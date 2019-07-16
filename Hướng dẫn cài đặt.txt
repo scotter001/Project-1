@@ -1,0 +1,3 @@
+﻿Mở file sql server: localhost  mk:123456
+mở file sql trong DB
+mật khẩu mở phần mềm: tk: admin, mk: admin

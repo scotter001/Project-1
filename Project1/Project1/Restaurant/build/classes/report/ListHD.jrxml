@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2ac13a00-6f22-4070-aea7-0a149f749e84">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="50" isBold="true" pdfFontName="&lt;Different Values&gt;" pdfEncoding="Identity-H"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18" pdfFontName="&lt;Different Values&gt;" pdfEncoding="Identity-H"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true" pdfFontName="&lt;Different Values&gt;" pdfEncoding="Identity-H"/>
+	<style name="Detail" fontName="Arial" fontSize="12" pdfFontName="&lt;Different Values&gt;" pdfEncoding="Identity-H"/>
+	<style name="Row" mode="Transparent" fontName="Arial" pdfFontName="&lt;Different Values&gt;" pdfEncoding="Identity-H">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="ID" class="java.lang.String"/>
+	<parameter name="duongdan" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     ChiTietHoaDon."SoLuong" AS ChiTietHoaDon_SoLuong,
+     ChiTietHoaDon."ThanhTien" AS ChiTietHoaDon_ThanhTien,
+     HoaDon."SoHoaDon" AS HoaDon_SoHoaDon,
+     HoaDon."NgayTaoHD" AS HoaDon_NgayTaoHD,
+     NhanVien."TenNV" AS NhanVien_TenNV,
+     SanPham."TenSP" AS SanPham_TenSP
+FROM
+     "dbo"."HoaDon" HoaDon INNER JOIN "dbo"."ChiTietHoaDon" ChiTietHoaDon ON HoaDon."MaHD" = ChiTietHoaDon."MaHD"
+     INNER JOIN "dbo"."NhanVien" NhanVien ON HoaDon."MaNV" = NhanVien."MaNV"
+     INNER JOIN "dbo"."SanPham" SanPham ON ChiTietHoaDon."MaSP" = SanPham."MaSP"
+WHERE
+     SoHoaDon = $P{ID}]]>
+	</queryString>
+	<field name="HoaDon_SoHoaDon" class="java.lang.String"/>
+	<field name="HoaDon_NgayTaoHD" class="java.lang.String"/>
+	<field name="SanPham_TenSP" class="java.lang.String"/>
+	<field name="ChiTietHoaDon_SoLuong" class="java.lang.Integer"/>
+	<field name="ChiTietHoaDon_ThanhTien" class="java.math.BigDecimal"/>
+	<field name="NhanVien_TenNV" class="java.lang.String"/>
+	<variable name="TongTien" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{ChiTietHoaDon_ThanhTien}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<staticText>
+				<reportElement style="Title" x="270" y="0" width="263" height="62" forecolor="#660000" uuid="78689f68-54c3-497a-9d25-b56b7f150585"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Restaurant]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="283" y="72" width="330" height="22" uuid="fd228388-3c2b-46fb-a4b8-0f94479d7025"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[27 Nguyễn Tất Thành, TP. Buôn Ma Thuột]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="94" width="383" height="42" uuid="d0feb604-9a18-4445-8f7b-d8adc90730fa"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="24" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Hóa Đơn Thanh Toán]]></text>
+			</staticText>
+			<image>
+				<reportElement x="633" y="-73" width="219" height="209" uuid="ed0e2189-b8b9-40eb-b36f-486c2538f609"/>
+				<imageExpression><![CDATA[$P{duongdan} + "src/report/coffee_stain.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="1" y="0" width="133" height="136" uuid="968feeb6-0d9b-45e8-a8e8-0b9dad746bef"/>
+				<imageExpression><![CDATA[$P{duongdan} + "src/report/45360647_576940566085297_3040522505501540352_n.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="802" height="1" uuid="4b6609d3-1026-4423-ad8d-5a6bce50fa0f"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="133" height="15" forecolor="#736343" uuid="7fd07026-fd68-43c0-89b6-07c5b06b3ad1"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Số HD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="133" y="0" width="133" height="15" forecolor="#736343" uuid="715e9e94-357e-4639-b4a1-0416c0f2ab22"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Ngày Tạo HD]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="266" y="0" width="133" height="15" forecolor="#736343" uuid="f1f70ec0-209c-4524-9b1b-61320913cd85"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Tên SP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="399" y="0" width="133" height="15" forecolor="#736343" uuid="01b696f1-415c-454c-bcc9-35b8946dd4f6"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Số Lượng]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="532" y="0" width="133" height="15" forecolor="#736343" uuid="2544504e-1a34-4e25-8d42-0ac5631705c0"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Thành Tiền]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="665" y="0" width="133" height="15" forecolor="#736343" uuid="0d7a1624-3143-4f22-9121-0f08aab6f679"/>
+				<box>
+					<pen lineWidth="0.0"/>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Tên NV]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="1" y="6" width="802" height="15" uuid="cdf832bf-4076-43dd-abaa-13b917218b27"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="133" height="15" uuid="089cf068-2cac-4548-b232-a73eba2d0511"/>
+					<box topPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{HoaDon_SoHoaDon}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="dd/MM/yyyy HH.mm.ss">
+					<reportElement style="Detail" x="133" y="0" width="133" height="15" uuid="e7cd589a-30bf-4c42-871b-23a56b72410c"/>
+					<box topPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{HoaDon_NgayTaoHD}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="266" y="0" width="133" height="15" uuid="675d2054-e33d-467e-8a54-8564e49865be"/>
+					<box topPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SanPham_TenSP}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="399" y="0" width="133" height="15" uuid="263cd9ef-1d51-4a11-92dd-69fcb68b000b"/>
+					<box topPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ChiTietHoaDon_SoLuong}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" pattern="###0.0;###0.0-">
+					<reportElement style="Detail" x="532" y="0" width="133" height="15" uuid="33fcbcc4-1d9e-4950-bb91-e009cbfe8346"/>
+					<box topPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ChiTietHoaDon_ThanhTien} + " "  + "(VNĐ)"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="665" y="0" width="133" height="15" uuid="b4204c14-8126-43a6-bc5c-29b6d694fcd2"/>
+					<box topPadding="0" bottomPadding="0" rightPadding="0">
+						<pen lineWidth="0.0"/>
+						<topPen lineWidth="0.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
+					</box>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{NhanVien_TenNV}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="26" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="1" y="0" width="802" height="1" uuid="2dea7891-0bb5-4d0c-a1c3-c89d90bfaae1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="1" y="4" width="100" height="20" uuid="1f18e3fa-aaf3-4f34-8077-45e2405dfca4"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Tổng Tiền]]></text>
+			</staticText>
+			<textField pattern="#,##0.000;#,##0.000-">
+				<reportElement x="665" y="4" width="133" height="20" uuid="63f772da-ed37-4a82-b284-3fa897c97f77"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true" isUnderline="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{TongTien} + " " + "(VNĐ)"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="843" height="24" forecolor="#D0B48E" backcolor="#F2EBDF" uuid="75342ecb-b011-4e90-970f-9f22aa4dd412"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="783" y="1" width="40" height="20" forecolor="#736343" uuid="70673dbe-1b10-444c-ad2f-9ef0faaf297d"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="703" y="1" width="80" height="20" forecolor="#736343" uuid="8762e56d-017e-4f0c-89f2-366913b22689"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Trang "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="dd/MM/yyyy h.mm a">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343" uuid="d71a8c82-9f5d-4305-9791-06bb756c41cf"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="10" isBold="false" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Hôm nay" + " " + new java.util.Date()]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="351" y="1" width="182" height="20" uuid="2a85faa1-45bb-4d89-b456-4fdf228a9c76"/>
+					<textElement>
+						<font fontName="Arial" size="12" isBold="true" pdfEncoding="Identity-H" isPdfEmbedded="true"/>
+					</textElement>
+					<text><![CDATA[Cám ơn quý khách, hẹn gặp lại!]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
