@@ -1,3 +1,14 @@
-﻿Mở file sql server: localhost  mk:123456
+﻿****************************************************************
+ ************
+ ******
+ ***
+ **
+ *
+ ------Dự án đượcc thực hiện bởi nhóm 1 gồm : Vũ Ngọc Công, Nông Văn Long, Y In Byẵ.
+ ---Phần mềm gồm 2 phần cài đặt setup ở dạng exe và file setup.
+ ---Hướng dẫn cài đặt phần mềm:
+ Mở file sql server: localhost  mk:123456
+ chỉnh sửa tên database : sa mật khẩu : 123456
 mở file sql trong DB
 mật khẩu mở phần mềm: tk: admin, mk: admin
+******************************************************************
