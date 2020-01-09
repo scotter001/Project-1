@@ -3,7 +3,7 @@
 ****
 **
 *
-Có file hướng dẫn cài đặt và source, unitest
+Phần mềm có file hướng dẫn cài đặt: source code, tester dạng cơ bản, câu lệnh truy vấn demo
 #############################
 #######################
 #####################
