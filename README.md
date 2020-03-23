@@ -11,3 +11,6 @@ Phần mềm có file hướng dẫn cài đặt: source code, tester dạng cơ
 #################
 ###############
 *************
+# Hướng dẫn sử dụng:
+*** Cài đặt phần mềm
+*** Đăng nhập tài khoản : admin , mật khẩu : admin123
